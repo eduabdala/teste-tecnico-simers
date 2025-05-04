@@ -1,0 +1,39 @@
+
+:root {
+    --simers-green: #007a3d;
+    --simers-dark-green: #004d29;
+    --simers-light-green: #e6f4ef;
+    --simers-gray: #f8f9fa;
+    --simers-text: #212529;
+  }
+  
+  body {
+    background-color: var(--simers-gray);
+    color: var(--simers-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .btn-simers {
+    background-color: var(--simers-green);
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-simers:hover {
+    background-color: var(--simers-dark-green);
+    color: #fff;
+  }
+  
+  .navbar-simers {
+    background-color: var(--simers-green);
+  }
+  
+  .navbar-simers .navbar-brand,
+  .navbar-simers .nav-link {
+    color: #fff;
+  }
+  
+  .navbar-simers .nav-link:hover {
+    color: var(--simers-light-green);
+  }
+  
