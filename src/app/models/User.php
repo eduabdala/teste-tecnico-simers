@@ -23,28 +23,41 @@ class User {
         if (empty(trim($data['nome'] ?? ''))) {
             return "Nome é obrigatório.";
         }
+        if (!preg_match('/^[\p{L} ]+$/u', $data['nome'])) {
+            return "Nome deve conter apenas letras e espaços.";
+        }
+
         if (empty(trim($data['cpf'] ?? ''))) {
             return "CPF é obrigatório.";
         }
-        if (empty(trim($data['email'] ?? ''))) {
-            return "Email é obrigatório.";
+        if (!preg_match('/^\d{11}$/', $data['cpf'])) {
+            return "CPF deve conter exatamente 11 dígitos numéricos.";
         }
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            return "Email inválido.";
+
+        if (empty(trim($data['email'] ?? '')) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            return "Email inválido ou ausente.";
         }
+
         if (empty(trim($data['data_nascimento'] ?? ''))) {
             return "Data de nascimento é obrigatória.";
         }
+
         if (empty(trim($data['telefone'] ?? ''))) {
             return "Telefone é obrigatório.";
         }
-        // Validate password only if it's set
-        if (isset($data['senha']) && empty(trim($data['senha']))) {
-            return "Senha não pode ser vazia.";
+        if (!preg_match('/^\d{10,11}$/', $data['telefone'])) {
+            return "Telefone deve conter 10 ou 11 dígitos numéricos.";
+        }
+
+        if (isset($data['senha']) && $data['senha'] !== '') {
+            if (strlen($data['senha']) < 6) {
+                return "A senha deve conter no mínimo 6 caracteres.";
+            }
         }
 
         return true;
     }
+
 
     /**
      * Create a new user with hashed password.
