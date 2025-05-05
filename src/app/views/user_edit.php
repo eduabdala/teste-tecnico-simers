@@ -53,5 +53,57 @@
             </div>
         </form>
     </div>
+    
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function (event) {
+            const name = document.getElementById('name').value.trim();
+            const cpf = document.getElementById('cpf').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const birthDate = document.getElementById('birth_date').value;
+            const phone = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+
+            const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+            const cpfRegex = /^\d{11}$/;
+            const phoneRegex = /^\d{10,11}$/;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameRegex.test(name)) {
+                alert("O nome deve conter apenas letras e espaços.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!cpfRegex.test(cpf)) {
+                alert("O CPF deve conter exatamente 11 números.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("E-mail inválido.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!birthDate) {
+                alert("Data de nascimento é obrigatória.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                alert("O telefone deve conter entre 10 e 11 números.");
+                event.preventDefault();
+                return;
+            }
+
+            if (password.length < 6) {
+                alert("A senha deve ter pelo menos 6 caracteres.");
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
 </body>
 </html>
