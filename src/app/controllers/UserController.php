@@ -3,22 +3,34 @@
 require_once __DIR__ . '/../models/User.php';
 use Valitron\Validator;
 
+/**
+ * Controller responsible for managing user-related actions.
+ */
 class UserController {
+    /**
+     * Instance of the User model.
+     * @var User
+     */
     private $model;
 
+    /**
+     * Initializes the controller and loads the User model.
+     */
     public function __construct() {
         $this->model = new User();
     }
 
     /**
-     * Show home page.
+     * Displays the home page.
+     * @return void
      */
     public function index() {
         include __DIR__ . '/../views/home.php';
     }
 
     /**
-     * Show all users in the view.
+     * Displays a list of all registered users.
+     * @return void
      */
     public function readAll() {
         $users = $this->model->getAll();
@@ -26,7 +38,9 @@ class UserController {
     }
 
     /**
-     * Handle form submission to create a user.
+     * Handles user creation form display and submission.
+     * Validates input data and stores a new user in the database.
+     * @return void
      */
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -58,7 +72,11 @@ class UserController {
     }
 
     /**
-     * Load user data and handle form to update it.
+     * Loads user data and handles the update form submission.
+     * Validates input data and updates user info in the database.
+     *
+     * @param int $id User ID to be edited.
+     * @return void
      */
     public function edit($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -95,7 +113,10 @@ class UserController {
     }
 
     /**
-     * Delete user by ID.
+     * Deletes a user by their ID.
+     *
+     * @param int $id User ID to be deleted.
+     * @return void
      */
     public function delete($id) {
         $this->model->delete($id);
