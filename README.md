@@ -35,6 +35,11 @@ Botão de exclusão com confirmação.
 
 ![Botão de excluir usuário](docs/screenshots/delete-user.png)
 
+### Criptografar Senha
+Senha criptografada antes de ir para o banco de dados.
+
+![Senha no banco de dados](docs/screenshots/db.png)
+
 ---
 
 ## Tecnologias Utilizadas
